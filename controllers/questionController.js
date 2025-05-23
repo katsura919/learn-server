@@ -3,7 +3,8 @@ const Question = require("../models/questionModel");
 const Lesson = require("../models/lessonModel");
 const {model, generationConfig} = require("../lib/geminiAI");
 
-// Generate Questions
+
+// Generate Question(s)
 const generateQuestions = async (req, res) => {
   try {
     const { lessonId } = req.params;
@@ -72,6 +73,8 @@ const generateQuestions = async (req, res) => {
 };
 
 
+
+
 // Get Questions by Lesson ID
 const getQuestionsByLesson = async (req, res) => {
   try {
@@ -92,6 +95,8 @@ const getQuestionsByLesson = async (req, res) => {
     res.status(500).json({ error: "Failed to fetch questions" });
   }
 };
+
+
 
 // Batch update multiple questions
 const batchUpdateQuestions = async (req, res) => {

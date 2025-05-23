@@ -3,7 +3,7 @@ const Category = require("../models/categoryModel");
 const { getIO } = require("../lib/socket");
 const cloudinary = require("../lib/cloudinary");
 
-// Create a new lesson
+// Create new lesson
 const createLesson = async (req, res) => {
   try {
     const { title, content, categoryName } = req.body;
@@ -94,8 +94,7 @@ const getLessons = async (req, res) => {
   }
 };
 
-
-// Fetch all lessons by categoryId 
+// Fetch lessons by categoryId
 const getLessonsByCategoryId = async (req, res) => {
   const { categoryId } = req.params;
 
@@ -109,9 +108,7 @@ const getLessonsByCategoryId = async (req, res) => {
 };
 
 
-
-
-// Get a single lesson by ID
+// Get single lesson by ID
 const getLessonById = async (req, res) => {
   try {
     const lesson = await Lesson.findById(req.params.id);
@@ -143,7 +140,7 @@ const updateLesson = async (req, res) => {
   }
 };
 
-// Delete a lesson
+// Delete lesson
 const deleteLesson = async (req, res) => {
   try {
     const lesson = await Lesson.findById(req.params.id);

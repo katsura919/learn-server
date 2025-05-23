@@ -1,6 +1,7 @@
 const Category = require("../models/categoryModel");
 const { getIO } = require("../lib/socket");
-// Controller: Creating a category in the DB
+
+// Controller: creates a category in the DataBase
 const createCategory = async (req, res) => {
   try {
     const { name } = req.body;
@@ -12,13 +13,14 @@ const createCategory = async (req, res) => {
     }
 
     const newCategory = await Category.create({ name, userId });
-    // Match data emitted in the socket event by emitting only necessary properties
+    
+    // Match the data emitted in socket event by emitting only needed properties
     const categoryData = {
-      id: newCategory._id.toString(),  // Ensure it's a string if needed
+      id: newCategory._id.toString(),  // Ensure that it's a string if needed
       name: newCategory.name,
     };
 
-    // Send response to the client
+    // Send response to client
     res.status(201).json(categoryData);
     
     // Emit to clients (socket.js part) -- example of the socket interaction 
@@ -32,7 +34,7 @@ const createCategory = async (req, res) => {
 };
 
 
-// Get All Categories 
+// Get all Categories 
 const getCategories = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -44,7 +46,7 @@ const getCategories = async (req, res) => {
   }
 };
 
-// Update a Category 
+// Update Category 
 const updateCategory = async (req, res) => {
   try {
     const { name } = req.body;
@@ -73,7 +75,7 @@ const updateCategory = async (req, res) => {
   }
 };
 
-// Delete a Category
+// Delete Category
 const deleteCategory = async (req, res) => {
   try {
     const { id } = req.params;
